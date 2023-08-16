@@ -49,7 +49,7 @@ module.exports.subscribe = express_async(async (req, res) => {
             // Envoi de l'email avec le contenu du template
             await sendEmail(
               existingUser.email,
-              "La Fondation Chrétienne - Août 2023",
+              "Fondation La Grâce Parle - Août 2023",
               data
             );
             res.status(200).json({
