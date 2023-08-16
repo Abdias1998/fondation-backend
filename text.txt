@@ -1,0 +1,1 @@
+.\git-script.ps1 "Commit automatisé"
