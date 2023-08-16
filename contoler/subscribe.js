@@ -37,7 +37,7 @@ module.exports.subscribe = express_async(async (req, res) => {
 
     // Lecture du template HTML avant de l'envoyer par nodemailer
     fs.readFile(
-      "../template/subscribe.template.html",
+      "./template/subscribe.template.html",
       "utf-8",
       async (err, data) => {
         if (err) {
