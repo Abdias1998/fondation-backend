@@ -5,111 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Newsletter de la Fondation Chrétienne</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
+      /* Ajoutez vos styles CSS ici */
       body {
         font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
       }
-
       .newsletter-container {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 20px;
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       }
-
+      header {
+        text-align: center;
+        background-color: #ffc400; /* Couleur jaune */
+        padding: 20px 0;
+      }
       header h1 {
-        color: #333333;
-        margin-bottom: 5px;
+        margin: 0;
+        color: white;
       }
-
       header p {
-        color: #777777;
-        font-style: italic;
+        margin: 10px 0 0;
+        color: white;
       }
-
-      .featured-article h2 {
-        color: #e86d39;
-        font-size: 18px;
-        margin-bottom: 10px;
+      section {
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
       }
-
+      section h2 {
+        text-align: center;
+      }
       .featured-article h3 {
-        color: #333333;
-        font-size: 16px;
-        margin-top: 0;
+        text-align: center;
+        color: #333;
       }
-
       .featured-article p {
-        color: #777777;
+        text-align: center;
+        color: #777;
       }
-
       .featured-article a {
-        display: inline-block;
+        display: block;
+        text-align: center;
         margin-top: 10px;
-        color: #e86d39;
         text-decoration: none;
-        font-weight: bold;
+        color: #003cff;
       }
-
-      .upcoming-events h2 {
-        color: #e86d39;
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-
       .upcoming-events ul {
         list-style: none;
         padding: 0;
       }
-
       .upcoming-events li {
-        margin-bottom: 5px;
-      }
-
-      .upcoming-events a {
-        color: #333333;
-        text-decoration: none;
-      }
-
-      .donation h2 {
-        color: #e86d39;
-        font-size: 18px;
         margin-bottom: 10px;
       }
-
-      .donation p {
-        color: #777777;
-      }
-
-      .donation a {
-        display: inline-block;
-        margin-top: 10px;
-        background-color: #e86d39;
-        color: #ffffff;
+      .upcoming-events a {
         text-decoration: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+        color: #333;
       }
-
-      .donation a:hover {
-        background-color: #c75724;
+      .donation p {
+        text-align: center;
+        color: #777;
       }
-
-      footer p {
-        color: #777777;
-      }
-
-      .social-links {
+      .donation a {
+        display: block;
+        text-align: center;
         margin-top: 10px;
+        text-decoration: none;
+        background-color: #003cff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
       }
-
+      footer {
+        text-align: center;
+        margin-top: 20px;
+      }
       .social-links a {
-        margin-right: 10px;
+        /* color: #003cff; */
+        font-size: 24px;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      li {
+        text-decoration: underline;
+        color: #333;
       }
     </style>
   </head>
@@ -126,18 +115,27 @@
           Découvrez comment la foi peut apporter de l'espoir dans les moments
           les plus difficiles de nos vies.
         </p>
-        <a href="#">Lire Plus</a>
+        <a
+          href="https://capable-creponne-29ce5a.netlify.app/ministere"
+          target="_blank"
+          >Lire Plus</a
+        >
       </section>
       <section class="upcoming-events">
         <h2>Événements à Venir</h2>
         <ul>
-          <li><a href="#">Conférence sur la Spiritualité et la Guérison</a></li>
-          <li><a href="#">Groupe de Prière Communautaire</a></li>
-          <li><a href="#">Retraite Spirituelle de l'Automne</a></li>
+          <li>
+            <a
+              href="https://capable-creponne-29ce5a.netlify.app/ministere"
+              target="_blank"
+              >Ebenezer 2</a
+            >
+          </li>
         </ul>
       </section>
       <section class="donation">
         <h2>Faire un Don</h2>
+
         <p>
           Votre soutien financier nous permet de continuer notre travail et
           d'aider ceux dans le besoin. Faites un don aujourd'hui.
@@ -149,9 +147,24 @@
       <footer>
         <p>Restez Connectés :</p>
         <div class="social-links">
-          <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
-          <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
-          <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+          <a href="https://www.facebook.com/Samuel.DALUM" target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.tiktok.com/@lagraceparle.officiel?_t=8ekVXKowouT&_r=1"
+            target="_blank"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/la_grace_parle/?igshid=NTc4MTIwNjQ2YQ%3D%3D"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.youtube.com/@lagraceparle8000/videos"
+            target="_blank"
+            ><i class="fab fa-youtube"></i
+          ></a>
         </div>
       </footer>
     </div>
