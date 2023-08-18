@@ -71,6 +71,7 @@ module.exports.subscribe = express_async(async (req, res) => {
     generateId: defaultId,
     confirmToken: confirmToken,
     confirmExpires: Date.now() + 3600000 * 24,
+    minds: true,
   });
   await existingUser.save();
   try {

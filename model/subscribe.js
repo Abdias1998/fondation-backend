@@ -21,6 +21,11 @@ const subscribeSchema = mongoose.Schema(
       type: String,
       trim: true,
     },
+    minds: {
+      type: Boolean,
+      trim: true,
+      default: false,
+    },
     generateId: {
       type: String,
       trim: true,
