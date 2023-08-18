@@ -78,36 +78,32 @@ module.exports.subscribe = express_async(async (req, res) => {
     const url = `${process.env.CLIENT_URL}/e/${extractedChars}/confirmation/${confirmToken}`;
     console.log(url);
     // Lecture du template HTML avant de l'envoyer par nodemailer
-    fs.readFile(
-      "./template/confirmation.template.html",
-      "utf-8",
-      async (err, data) => {
-        if (err) {
-          return res
-            .status(500)
-            .json({ message: "Erreur lors de la lecture du modèle" });
-        } else {
-          try {
-            // Envoi de l'email avec le contenu du template
-            const html = data
-              .replace(/{name}/g, existingUser.names)
-              .replace(/{confirm_link}/g, url);
-            await sendEmail(
-              existingUser.email,
-              "Fondation La Grâce Parle - Août 2023",
-              html
-            );
-            res.status(200).json({
-              message: `Merci pour votre abonnement à notre newsletter ! Vous recevrez nos dernières actualités et mises à jour.`,
-            });
-          } catch (error) {
-            return res.status(500).json({
-              message: "L'envoi de l'email a échoué, veuillez réessayer",
-            });
-          }
+    fs.readFile("./template/confirmation.html", "utf-8", async (err, data) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: "Erreur lors de la lecture du modèle" });
+      } else {
+        try {
+          // Envoi de l'email avec le contenu du template
+          const html = data
+            .replace(/{name}/g, existingUser.names)
+            .replace(/{confirm_link}/g, url);
+          await sendEmail(
+            existingUser.email,
+            "Fondation La Grâce Parle - Août 2023",
+            html
+          );
+          res.status(200).json({
+            message: `Merci pour votre abonnement à notre newsletter ! Vous recevrez nos dernières actualités et mises à jour.`,
+          });
+        } catch (error) {
+          return res.status(500).json({
+            message: "L'envoi de l'email a échoué, veuillez réessayer",
+          });
         }
       }
-    );
+    });
   } catch (error) {
     res.status(500).json({
       message: `Erreur interne du serveur, veuillez réessayer ${error}`,
