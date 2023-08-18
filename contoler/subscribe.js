@@ -58,7 +58,7 @@ module.exports.subscribe = express_async(async (req, res) => {
     }
 
     /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
-    const resetToken = jwt.sign(
+    const confirmToken = jwt.sign(
       { generateId: defaultId },
       process.env.FORGET_PASSWORD_KEY,
       {
@@ -71,15 +71,15 @@ module.exports.subscribe = express_async(async (req, res) => {
       video,
       names,
       generateId: defaultId,
-      resetPasswordToken: resetToken,
-      resetPasswordExpires: Date.now() + 3600000 * 24,
+      confirmToken: confirmToken,
+      confirmExpires: Date.now() + 3600000 * 24,
     });
     await existingUser.save();
-    const url = `${process.env.CLIENT_URL}/e/${extractedChars}/confirmation/${resetToken}`;
+    const url = `${process.env.CLIENT_URL}/e/${extractedChars}/confirmation/${confirmToken}`;
     console.log(url);
     // Lecture du template HTML avant de l'envoyer par nodemailer
     fs.readFile(
-      "./template/subscribe.template.html",
+      "./template/confirmation.template.html",
       "utf-8",
       async (err, data) => {
         if (err) {
@@ -89,10 +89,13 @@ module.exports.subscribe = express_async(async (req, res) => {
         } else {
           try {
             // Envoi de l'email avec le contenu du template
+            const html = data
+              .replace(/{name}/g, existingUser.names)
+              .replace(/{confirm_link}/g, url);
             await sendEmail(
               existingUser.email,
               "Fondation La Grâce Parle - Août 2023",
-              data
+              html
             );
             res.status(200).json({
               message: `Merci pour votre abonnement à notre newsletter ! Vous recevrez nos dernières actualités et mises à jour.`,

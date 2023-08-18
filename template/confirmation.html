@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Veuillez confirmer votre inscription</title>
+    <style>
+      /* Ajoutez vos styles CSS ici */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eee;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .container {
+        width: 100%;
+        margin: 0 auto;
+        text-align: justify;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(78, 71, 32, 0.92);
+      }
+      .button {
+        background-color: rgb(255, 225, 0);
+        border: none; /* pas de bordure */
+        color: rgb(0, 0, 0); /* couleur du texte */
+        padding: 5px 5px; /* espacement intérieur */
+        text-align: center; /* centrage du texte */
+        text-decoration: none; /* pas de soulignement */
+        display: inline-block;
+        font-size: 15px; /* taille de police */
+        margin: auto; /* marge extérieure */
+        cursor: pointer; /* curseur de la souris */
+        border-radius: 5px; /* bordures arrondies */
+        /* ombre portée */
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+      }
+      a {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Veuillez confirmer votre inscription</h1>
+      <p>Shalom, {name}</p>
+      <p>
+        Merci de votre inscription à la Pensée La Grace Parle. Pour activer
+        votre abonnement gratuit, la loi RGPD nous oblige à présent à vous
+        demander de confirmer votre abonnement. Pour cela, il vous suffit de
+        cliquer sur le lien suivant :
+      </p>
+      <button class="button">
+        <a href="{confirm_link}">Confirmation </a>
+      </button>
+      <p>
+        En l'absence de confirmation de votre part, nous ne pourrons pas vous
+        envoyer la Pensée de La la Grâce Parle
+      </p>
+      <p>Si vous avez reçu cet email par erreur, ignorez-le simplement.</p>
+      <hr />
+      <small
+        >Ces méditations quotidiennes vous sont offertes grâce au soutien de nos
+        amis et partenaires.</small
+      >
+      <small>Copyright © 2023, tous droits réservés.</small>
+      <small
+        >Notre conseil : Si vous ne souhaitez pas que cet email soit stocké dans
+        vos spams, ajoutez notre adresse à vos contacts.</small
+      >
+      <small
+        >Vous ne souhaitez plus recevoir la Pensée de Joyce ? Vous pouvez vous
+        désinscrire ici de la Pensée de Joyce. Vous pouvez vous désinscrire ici
+        des emails envoyés par Joyce Meyer Ministries.
+      </small>
+    </div>
+  </body>
+</html>

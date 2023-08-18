@@ -25,11 +25,11 @@ const subscribeSchema = mongoose.Schema(
       type: String,
       trim: true,
     },
-    resetPasswordToken: {
+    confirmToken: {
       type: String,
       default: "",
     },
-    resetPasswordExpires: {
+    confirmExpires: {
       type: Date,
       default: "",
     },
