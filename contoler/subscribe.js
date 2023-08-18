@@ -46,35 +46,34 @@ module.exports.subscribe = express_async(async (req, res) => {
     }
   }
   const extractedChars = extractSixFirstCharacters(defaultId);
+  // Recherche de l'utilisateur dans la base de données
+  existingUser = await SUBSCRIBE.findOne({ email });
 
-  try {
-    // Recherche de l'utilisateur dans la base de données
-    existingUser = await SUBSCRIBE.findOne({ email });
+  if (existingUser) {
+    return res
+      .status(400)
+      .json({ message: "Vous êtes déjà abonné au service" });
+  }
 
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "Vous êtes déjà abonné au service" });
+  /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
+  const confirmToken = jwt.sign(
+    { generateId: defaultId },
+    process.env.FORGET_PASSWORD_KEY,
+    {
+      expiresIn: 3600 * 24, // Expire après 24h
     }
-
-    /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
-    const confirmToken = jwt.sign(
-      { generateId: defaultId },
-      process.env.FORGET_PASSWORD_KEY,
-      {
-        expiresIn: 3600 * 24, // Expire après 24h
-      }
-    );
-    existingUser = new SUBSCRIBE({
-      email,
-      audio,
-      video,
-      names,
-      generateId: defaultId,
-      confirmToken: confirmToken,
-      confirmExpires: Date.now() + 3600000 * 24,
-    });
-    await existingUser.save();
+  );
+  existingUser = new SUBSCRIBE({
+    email,
+    audio,
+    video,
+    names,
+    generateId: defaultId,
+    confirmToken: confirmToken,
+    confirmExpires: Date.now() + 3600000 * 24,
+  });
+  await existingUser.save();
+  try {
     const url = `${process.env.CLIENT_URL}/e/${extractedChars}/confirmation/${confirmToken}`;
     console.log(url);
     // Lecture du template HTML avant de l'envoyer par nodemailer
