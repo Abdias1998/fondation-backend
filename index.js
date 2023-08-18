@@ -34,28 +34,6 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 app.use("/api/v1", subscribeRoute);
-function extractSixFirstCharacters(inputWord) {
-  const regex = /^[a-zA-Z0-9]{1,6}/; // Expression régulière pour correspondre aux six premiers caractères alphanumériques
-  const match = inputWord.match(regex);
-
-  if (match) {
-    return match[0];
-  } else {
-    return null; // Pas de correspondance trouvée
-  }
-}
-
-// Exemple d'utilisation
-const word = "Bonjour123";
-const extractedChars = extractSixFirstCharacters(word);
-
-if (extractedChars !== null) {
-  console.log(
-    `Les six premiers caractères alphanumériques sont : ${extractedChars}`
-  );
-} else {
-  console.log("Aucune correspondance trouvée");
-}
 
 app.listen(port, () =>
   console.log(`Le serveur est démarrer sur le port ${port}`)
