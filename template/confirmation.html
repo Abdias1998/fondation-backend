@@ -27,26 +27,16 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 20px 0 rgba(78, 71, 32, 0.92);
       }
-      .button {
-        background-color: rgb(255, 225, 0);
-        border: none; /* pas de bordure */
-        color: rgb(0, 0, 0); /* couleur du texte */
-        padding: 5px 5px; /* espacement intérieur */
-        text-align: center; /* centrage du texte */
-        text-decoration: none; /* pas de soulignement */
-        display: inline-block;
-        font-size: 15px; /* taille de police */
-        margin: auto; /* marge extérieure */
-        cursor: pointer; /* curseur de la souris */
-        border-radius: 5px; /* bordures arrondies */
-        /* ombre portée */
-        display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-      }
-      a {
+
+      .donation a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        text-decoration: none;
+        background-color: #003cff;
         color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
       }
     </style>
   </head>
@@ -60,9 +50,9 @@
         demander de confirmer votre abonnement. Pour cela, il vous suffit de
         cliquer sur le lien suivant :
       </p>
-      <button class="button">
+      <div class="donation">
         <a href="{confirm_link}">Confirmation </a>
-      </button>
+      </div>
       <p>
         En l'absence de confirmation de votre part, nous ne pourrons pas vous
         envoyer la Pensée de La la Grâce Parle
