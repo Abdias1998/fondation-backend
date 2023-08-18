@@ -1,5 +1,5 @@
 // /* global __dirname */
-// /* global process */
+/* global process */
 
 const SUBSCRIBE = require("../model/subscribe");
 const express_async = require("express-async-handler");
@@ -7,11 +7,12 @@ const validator = require(`validator`);
 const fs = require("fs");
 const mongoose = require("mongoose");
 const sendEmail_request = require(`../utils/send.email`);
+const jwt = require("jsonwebtoken");
 
 const sendEmail = sendEmail_request.sendEmail;
 
 module.exports.subscribe = express_async(async (req, res) => {
-  const { email } = req.body;
+  const { names, email, audio, video } = req.body;
   let existingUser;
 
   // Vérification si c'est un email valide et non vide
@@ -20,6 +21,31 @@ module.exports.subscribe = express_async(async (req, res) => {
       .status(400)
       .json({ message: "Veuillez saisir une adresse e-mail valide" });
   }
+  function generateId(length = 24) {
+    const characters = "abcdef0123456789";
+    let id = "";
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      id += characters[randomIndex];
+    }
+
+    return id;
+  }
+
+  // Utilisation de la fonction pour générer un ID de longueur par défaut (24 caractères)
+  const defaultId = generateId();
+  function extractSixFirstCharacters(inputWord) {
+    const regex = /^[a-zA-Z0-9]{1,6}/; // Expression régulière pour correspondre aux six premiers caractères alphanumériques
+    const match = inputWord.match(regex);
+
+    if (match) {
+      return match[0];
+    } else {
+      return null; // Pas de correspondance trouvée
+    }
+  }
+  const extractedChars = extractSixFirstCharacters(defaultId);
 
   try {
     // Recherche de l'utilisateur dans la base de données
@@ -31,10 +57,26 @@ module.exports.subscribe = express_async(async (req, res) => {
         .json({ message: "Vous êtes déjà abonné au service" });
     }
 
-    // Création d'un nouvel utilisateur avec l'email
-    existingUser = new SUBSCRIBE({ email });
+    /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
+    const resetToken = jwt.sign(
+      { generateId: defaultId },
+      process.env.FORGET_PASSWORD_KEY,
+      {
+        expiresIn: 3600 * 24, // Expire après 24h
+      }
+    );
+    existingUser = new SUBSCRIBE({
+      email,
+      audio,
+      video,
+      names,
+      generateId: defaultId,
+      resetPasswordToken: resetToken,
+      resetPasswordExpires: Date.now() + 3600000 * 24,
+    });
     await existingUser.save();
-
+    const url = `${process.env.CLIENT_URL}/e/${extractedChars}/confirmation/${resetToken}`;
+    console.log(url);
     // Lecture du template HTML avant de l'envoyer par nodemailer
     fs.readFile(
       "./template/subscribe.template.html",
