@@ -18,6 +18,11 @@ module.exports.receiveMessage = express_async(async (req, res) => {
       .status(400)
       .json({ message: "Veuillez saisir une adresse e-mail valide" });
   }
+  if (!validator.isLength(message, { min: 5, max: 300 }))
+    return res.status(401).json({
+      message: `La longueur de votre message ne respecte pas nos standards de validation.`,
+    });
+
   try {
     existingUser = new SUBSCRIBE({
       email,

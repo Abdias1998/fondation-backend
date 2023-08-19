@@ -20,17 +20,17 @@ const messageSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    validate: [
-      {
-        validator: function (value) {
-          const wordCount = value
-            .split(" ")
-            .filter((word) => word !== "").length;
-          return wordCount >= 5 && wordCount <= 600;
-        },
-        message: "Le contenu doit contenir entre 5 et 126 mots.",
-      },
-    ],
+    // validate: [
+    //   {
+    //     validator: function (value) {
+    //       const wordCount = value
+    //         .split(" ")
+    //         .filter((word) => word !== "").length;
+    //       return wordCount >= 5 && wordCount <= 600;
+    //     },
+    //     message: "Le contenu doit contenir entre 5 et 126 mots.",
+    //   },
+    // ],
   },
 });
 
