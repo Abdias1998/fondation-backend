@@ -27,7 +27,7 @@ module.exports.receiveMessage = express_async(async (req, res) => {
     });
     await existingUser.save();
     return res.status(200).json({
-      message: `Nous avons reçu votre message ${names}, nous vous reviendrons au plus vite.`,
+      message: `Nous avons reçu votre message ${names}, nous vous reviendrons au plus vite!`,
     });
   } catch (error) {
     res.status(500).json({
