@@ -1,13 +1,8 @@
 // /* global __dirname */
-/* global process */
 
 const SUBSCRIBE = require("../model/contact");
 const express_async = require("express-async-handler");
 const validator = require(`validator`);
-const fs = require("fs");
-const mongoose = require("mongoose");
-const sendEmail_request = require(`../utils/send.email`);
-const jwt = require("jsonwebtoken");
 
 module.exports.receiveMessage = express_async(async (req, res) => {
   const { names, subject, email, message } = req.body;
