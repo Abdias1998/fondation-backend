@@ -8,6 +8,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const subscribeRoute = require("./routes/subscribes.routes");
+const contactRoute = require("./routes/contact.routes");
 const useragent = require("express-useragent");
 const path = require("path");
 const app = express();
@@ -34,6 +35,7 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 app.use("/api/v1", subscribeRoute);
+app.use("/api/v2", contactRoute);
 
 app.listen(port, () =>
   console.log(`Le serveur est démarrer sur le port ${port}`)
