@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const unique_validator = require("mongoose-unique-validator");
+
 const messageSchema = mongoose.Schema({
   names: {
     type: String,
@@ -33,7 +33,5 @@ const messageSchema = mongoose.Schema({
     // ],
   },
 });
-
-messageSchema.plugin(unique_validator);
 
 module.exports = mongoose.model("message", messageSchema);
