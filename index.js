@@ -36,6 +36,26 @@ app.get("/", function (req, res) {
 });
 app.use("/api/v1", subscribeRoute);
 app.use("/api/v2", contactRoute);
+const faq = [
+  "Foi et Croyances",
+  "Activités de la Fondation",
+  "Dons et Soutien",
+  "Engagement Chrétien",
+  "Événements et Rassemblements",
+  "Engagement Social et Humanitaire",
+  "Questions Théologiques",
+  "Contact et Support",
+  "Partenariats et Collaborations",
+  "Ressources et Enseignements",
+];
+const mot = "Foi et Croyances    ";
+
+// Vérifier si le mot est égal à l'un des éléments du tableau faq
+if (faq.includes(mot.trim())) {
+  console.log(`Le mot "${mot}" existe dans le tableau faq.`);
+} else {
+  console.log(`Le mot "${mot}" n'existe pas dans le tableau faq.`);
+}
 
 app.listen(port, () =>
   console.log(`Le serveur est démarrer sur le port ${port}`)
