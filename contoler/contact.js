@@ -21,7 +21,7 @@ module.exports.receiveMessage = express_async(async (req, res) => {
     "Ressources et Enseignements",
   ];
 
-  const { names, subject, email, message } = req.body;
+  const { names, subject, email, message, tel } = req.body;
   // let existingUser;
   // Vérification si c'est un email valide et non vide
   if (!validator.isEmail(email) || validator.isEmpty(email)) {
@@ -69,6 +69,7 @@ module.exports.receiveMessage = express_async(async (req, res) => {
             .replace(/{name}/g, names)
             .replace(/{subject}/g, subject)
             .replace(/{email}/g, email)
+            .replace(/{tel}/g, tel)
             .replace(/{message}/g, message);
 
           await sendEmail(
