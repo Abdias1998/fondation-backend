@@ -43,12 +43,12 @@ module.exports.receiveMessage = express_async(async (req, res) => {
   //   });
   // }
 
-  if (faq.includes(subject.trim())) {
-    return res.status(400).json({
-      message:
-        "Nous disposons d'une liste de questions sur ce sujet. Nous vous encourageons à consulter la section FAQ dans la rubrique contactez-nous pour obtenir de plus amples informations.",
-    });
-  }
+  // if (faq.includes(subject.trim())) {
+  //   return res.status(400).json({
+  //     message:
+  //       "Nous disposons d'une liste de questions sur ce sujet. Nous vous encourageons à consulter la section FAQ dans la rubrique contactez-nous pour obtenir de plus amples informations.",
+  //   });
+  // }
 
   try {
     // existingUser = new SUBSCRIBE({
