@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation de Demande de Prière</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .email-header {
+        text-align: center;
+        background-color: #ffc400;
+        color: #fff;
+        padding: 20px;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .email-content {
+        padding: 20px;
+      }
+
+      .email-content p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .user-info {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .user-info p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .email-signature {
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="email-header">
+        <h2>Confirmation de Demande de Prière</h2>
+      </div>
+      <div class="email-content">
+        <p>Cher utilisateur,</p>
+        <p>
+          Vous avez reçu une nouvelle demande de prière. Voici les informations
+          soumises par l'utilisateur :
+        </p>
+
+        <div class="user-info">
+          <p><strong>Sexe :</strong> {sexe}</p>
+          <p><strong>Pays :</strong> {pays}</p>
+          <p><strong>Sujet :</strong> {subject}</p>
+          <p><strong>Nom :</strong>{names}</p>
+          <p><strong>E-mail :</strong> {email}</p>
+          <p><strong>Demande de Prière :</strong> {message}</p>
+          <p><strong>Numéro whatsapp :</strong> {tel}</p>
+        </div>
+
+        <p>
+          Prenez en compte cette demande dans vos prières et assurez-vous de
+          contacter l'utilisateur pour lui apporter votre soutien.
+        </p>
+      </div>
+      <div class="email-signature">
+        <p>Cordialement,</p>
+        <p>Votre Nom / Votre Organisation</p>
+      </div>
+    </div>
+  </body>
+</html>
