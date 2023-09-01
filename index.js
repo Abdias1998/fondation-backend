@@ -37,7 +37,7 @@ app.get("/", function (req, res) {
 });
 app.use("/api/v1", subscribeRoute);
 app.use("/api/v2", contactRoute);
-app.use("/api/v2", prayerRoute);
+app.use("/api/v3", prayerRoute);
 const faq = [
   "Foi et Croyances",
   "Activités de la Fondation",
