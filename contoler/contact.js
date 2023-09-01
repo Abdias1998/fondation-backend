@@ -74,7 +74,7 @@ module.exports.receiveMessage = express_async(async (req, res) => {
 
           await sendEmail(
             `${process.env.USER}`,
-            "Fondation La Grâce Parle - Août 2023",
+            "Message de Contact - Fondation La Grâce Parle",
             html
           );
           res.status(200).json({

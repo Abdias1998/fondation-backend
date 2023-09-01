@@ -54,7 +54,7 @@ module.exports.receiveMessagePrayer = express_async(async (req, res) => {
         try {
           // Envoi de l'email avec le contenu du template
           const html = data
-            .replace(/{name}/g, names)
+            .replace(/{names}/g, names)
             .replace(/{pays}/g, pays)
             .replace(/{sexe}/g, sexe)
             .replace(/{subject}/g, subject)
@@ -64,7 +64,7 @@ module.exports.receiveMessagePrayer = express_async(async (req, res) => {
 
           await sendEmail(
             `${process.env.USER}`,
-            "Fondation La Grâce Parle",
+            "Confirmation de Demande de Prière",
             html
           );
           res.status(200).json({
