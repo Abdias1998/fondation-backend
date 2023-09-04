@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const subscribeRoute = require("./routes/subscribes.routes");
 const contactRoute = require("./routes/contact.routes");
-const prayerRoute = require("./routes/prayer.routes");
+
 const useragent = require("express-useragent");
 const path = require("path");
 const app = express();
@@ -37,7 +37,7 @@ app.get("/", function (req, res) {
 });
 app.use("/api/v1", subscribeRoute);
 app.use("/api/v2", contactRoute);
-app.use("/api/v3", prayerRoute);
+
 const faq = [
   "Foi et Croyances",
   "Activités de la Fondation",
