@@ -34,7 +34,7 @@ module.exports.receiveMessageTestimonial = express_async(async (req, res) => {
 
           await sendEmail(`${process.env.USER}`, "Témoignages", html);
           res.status(200).json({
-            message: `Nous avons reçu votre message, nous vous reviendrons au plus vite!`,
+            message: ` Nous vous remercions sincèrement d'avoir partagé votre témoignage avec nous. Nous tenons à vous informer que nous avons bien reçu votre demande et que nous allons la prendre en compte dans nos publications de témoignage.`,
           });
         } catch (error) {
           return res.status(500).json({
@@ -42,14 +42,6 @@ module.exports.receiveMessageTestimonial = express_async(async (req, res) => {
           });
         }
       }
-    });
-    // await existingUser.save();
-    return res.status(200).json({
-      message: `,
-      Nous vous remercions sincèrement d'avoir partagé votre témoignage avec nous. Nous tenons à vous informer que nous avons bien reçu votre demande et que nous allons la prendre en compte dans nos publications de témoignage.
-      
-      
-      `,
     });
   } catch (error) {
     res.status(500).json({
