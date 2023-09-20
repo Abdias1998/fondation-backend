@@ -10,7 +10,7 @@ const fs = require("fs");
 const sendEmail = sendEmail_request.sendEmail;
 const sendEmailAdoris = sendEmail_request.sendEmailAdoris;
 module.exports.receiveMessage = express_async(async (req, res) => {
-  const { names, subject, email, message, tel } = req.body;
+  const { names, subject, email, message, tel, pays } = req.body;
   // let existingUser;
   // Vérification si c'est un email valide et non vide
   if (!validator.isEmail(email) || validator.isEmpty(email)) {
@@ -36,6 +36,7 @@ module.exports.receiveMessage = express_async(async (req, res) => {
             .replace(/{name}/g, names)
             .replace(/{subject}/g, subject)
             .replace(/{email}/g, email)
+            .replace(/{pays}/g, pays)
             .replace(/{tel}/g, tel)
             .replace(/{message}/g, message);
 
