@@ -58,7 +58,7 @@ module.exports.subscribe = express_async(async (req, res) => {
   /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
   const confirmToken = jwt.sign(
     { generateId: defaultId },
-    process.env.FORGET_PASSWORD_KEY,
+    process.env.confirmToken,
     {
       expiresIn: 3600 * 24, // Expire après 24h
     }
