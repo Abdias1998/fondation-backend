@@ -119,11 +119,11 @@ module.exports.confirmSubscribe = express_async(async (req, res) => {
     /**Verifie si le token est celle que nous avons générer avec un key forget_password_key  */
     const decoded = jwt.verify(req.params.id2, process.env.confirmToken);
     const user = await User.findById(decoded._id);
-    if (!user)
-      return res.status(403).json({
-        message: `Authentification échoué, veuillez récommencez l'opération du changement du mot de passe.
-`,
-      });
+    //     if (!user)
+    //       return res.status(403).json({
+    //         message: `Authentification échoué, veuillez récommencez l'opération du changement du mot de passe.
+    // `,
+    //       });
     /**Vérifez si le lien à expirer */
     if (user.confirmExpires < Date.now()) {
       return res.status(403).json({
