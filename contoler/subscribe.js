@@ -75,7 +75,7 @@ module.exports.subscribe = express_async(async (req, res) => {
   });
   await existingUser.save();
   try {
-    const url = `${process.env.CLIENT_URL}/newletter.html?id1=${extractedChars}&id2=${confirmToken}`;
+    const url = `${process.env.CLIENT_URL}/newsletter.html?id1=${extractedChars}&id2=${confirmToken}`;
     console.log(url);
     // Lecture du template HTML avant de l'envoyer par nodemailer
     fs.readFile("./template/confirmation.html", "utf-8", async (err, data) => {
