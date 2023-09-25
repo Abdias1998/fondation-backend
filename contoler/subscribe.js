@@ -8,7 +8,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const sendEmail_request = require(`../utils/send.email`);
 const jwt = require("jsonwebtoken");
-
+const User = require("../model/subscribe");
 const sendEmail = sendEmail_request.sendEmail;
 
 module.exports.subscribe = express_async(async (req, res) => {
@@ -111,6 +111,44 @@ module.exports.subscribe = express_async(async (req, res) => {
   }
 });
 
+module.exports.confirmSubscribe = express_async(async (req, res) => {
+  /**Vérifions si les informations dans notre url est bien celle de l'user ou il n'a pas été cliquer ou s'il a déjà expirer */
+  try {
+    /**Vérifer les données saisir par l'user */
+
+    /**Verifie si le token est celle que nous avons générer avec un key forget_password_key  */
+    const decoded = jwt.verify(req.params.id2, process.env.confirmToken);
+    const user = await User.findById(decoded._id);
+    if (!user)
+      return res.status(403).json({
+        message: `Authentification échoué, veuillez récommencez l'opération du changement du mot de passe.
+`,
+      });
+    /**Vérifez si le lien à expirer */
+    if (user.confirmExpires < Date.now()) {
+      return res.status(403).json({
+        message:
+          "Le lien de réinitialisation a expiré ou a déjà été cliquer,veuillez récommencez l'opération du changement du mot de passe",
+      });
+    }
+
+    await user.updateOne({
+      confirmToken: ``,
+      generateId: ``,
+      confirmExpires: ``,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: `Votre lien de vérification à probablement expirer ou a déjà été cliquer. Veuillez recommencer le processus de changement du mot de passe. ${error}
+`,
+    });
+  }
+  /**Réponse finale  */
+  return res.status(200).json({
+    message:
+      "Votre mot de passe a été changé avec succès. Veuillez-vous connectez à présent avec le nouveau mot de passe.",
+  });
+});
 module.exports.getAllUsers = express_async(async (req, res) => {
   try {
     /**Recuperer avec la méthode find de mongoose sans les mots de passe */
