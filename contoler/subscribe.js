@@ -117,7 +117,7 @@ module.exports.confirmSubscribe = express_async(async (req, res) => {
     /**Vérifer les données saisir par l'user */
 
     /**Verifie si le token est celle que nous avons générer avec un key forget_password_key  */
-    const decoded = jwt.verify(req.query.id2, process.env.confirmToken);
+    const decoded = jwt.verify(req.params.id2, process.env.confirmToken);
     const user = await User.findById(decoded._id);
     if (!user)
       return res.status(403).json({
