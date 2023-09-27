@@ -12,7 +12,7 @@ const User = require("../model/subscribe");
 const sendEmail = sendEmail_request.sendEmail;
 
 module.exports.subscribe = express_async(async (req, res) => {
-  const { names, email, audio, video } = req.body;
+  const { names, email } = req.body;
   let existingUser;
 
   // Vérification si c'est un email valide et non vide
@@ -65,8 +65,6 @@ module.exports.subscribe = express_async(async (req, res) => {
   );
   existingUser = new SUBSCRIBE({
     email,
-    audio,
-    video,
     names,
     generateId: defaultId,
     confirmToken: confirmToken,
