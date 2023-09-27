@@ -9,14 +9,14 @@ const fs = require("fs");
 
 const sendEmail = sendEmail_request.sendEmail;
 module.exports.receiveMessagePrayer = express_async(async (req, res) => {
-  const { sexe, names, pays, subject, email, message, tel } = req.body;
+  const { names, pays, subject, message, tel } = req.body;
   // let existingUser;
   // Vérification si c'est un email valide et non vide
-  if (!validator.isEmail(email) || validator.isEmpty(email)) {
-    return res
-      .status(400)
-      .json({ message: "Veuillez saisir une adresse e-mail valide" });
-  }
+  // if (!validator.isEmail(email) || validator.isEmpty(email)) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: "Veuillez saisir une adresse e-mail valide" });
+  // }
   if (!validator.isLength(message, { min: 2, max: 5000 }))
     return res.status(401).json({
       message: `La longueur de votre message ne respecte pas nos standards de validation.`,
@@ -56,9 +56,9 @@ module.exports.receiveMessagePrayer = express_async(async (req, res) => {
           const html = data
             .replace(/{names}/g, names)
             .replace(/{pays}/g, pays)
-            .replace(/{sexe}/g, sexe)
+            // .replace(/{sexe}/g, sexe)
             .replace(/{subject}/g, subject)
-            .replace(/{email}/g, email)
+            // .replace(/{email}/g, email)
             .replace(/{tel}/g, tel)
             .replace(/{message}/g, message);
 
