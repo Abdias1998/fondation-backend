@@ -50,9 +50,10 @@ module.exports.subscribe = express_async(async (req, res) => {
   existingUser = await SUBSCRIBE.findOne({ email });
 
   if (existingUser) {
-    return res
-      .status(400)
-      .json({ message: "Vous êtes déjà abonné au service" });
+    return res.status(400).json({
+      message:
+        "Vous êtes déjà abonné au service à ce mail, si ce n'est le cas veuillez nous écrire pour être supprimer.",
+    });
   }
 
   /**Rnvoyer un token dans url avec les l'identifiant de l'utilisateur qui expire dans aprés 24 heure */
