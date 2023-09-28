@@ -9,7 +9,7 @@ const fs = require("fs");
 
 const sendEmail = sendEmail_request.sendEmail;
 module.exports.receiveMessageTestimonial = express_async(async (req, res) => {
-  const { sexe, names, pays, message, tel } = req.body;
+  const { names, pays, message } = req.body;
 
   if (!validator.isLength(message, { min: 2, max: 5000 }))
     return res.status(401).json({
@@ -28,13 +28,13 @@ module.exports.receiveMessageTestimonial = express_async(async (req, res) => {
           const html = data
             .replace(/{names}/g, names)
             .replace(/{pays}/g, pays)
-            .replace(/{sexe}/g, sexe)
-            .replace(/{tel}/g, tel)
+            // .replace(/{sexe}/g, sexe)
+            // .replace(/{tel}/g, tel)
             .replace(/{message}/g, message);
 
           await sendEmail(`${process.env.USER}`, "Témoignages", html);
-          res.status(200).json({
-            message: ` Nous vous remercions sincèrement d'avoir partagé votre témoignage avec nous. Nous tenons à vous informer que nous avons bien reçu votre demande et que nous allons la prendre en compte dans nos publications de témoignage.`,
+          return res.status(200).json({
+            message: ` Nous vous remercions sincèrement d'avoir partagé votre témoignage avec nous. Nous tenons à vous informer que nous avons bien reçu votre demande et que nous allons la prendre en compte dans nos publications de témoignagessssss.`,
           });
         } catch (error) {
           return res.status(500).json({
