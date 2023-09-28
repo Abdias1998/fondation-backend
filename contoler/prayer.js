@@ -9,7 +9,7 @@ const fs = require("fs");
 
 const sendEmail = sendEmail_request.sendEmail;
 module.exports.receiveMessagePrayer = express_async(async (req, res) => {
-  const { names, pays, subject, message, tel } = req.body;
+  const { names, pays, message } = req.body;
   // let existingUser;
   // Vérification si c'est un email valide et non vide
   // if (!validator.isEmail(email) || validator.isEmpty(email)) {
@@ -57,9 +57,9 @@ module.exports.receiveMessagePrayer = express_async(async (req, res) => {
             .replace(/{names}/g, names)
             .replace(/{pays}/g, pays)
             // .replace(/{sexe}/g, sexe)
-            .replace(/{subject}/g, subject)
+            // .replace(/{subject}/g, subject)
             // .replace(/{email}/g, email)
-            .replace(/{tel}/g, tel)
+            // .replace(/{tel}/g, tel)
             .replace(/{message}/g, message);
 
           await sendEmail(
